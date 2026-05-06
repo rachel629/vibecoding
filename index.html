@@ -268,6 +268,8 @@
     .tool-card.vscode { background: linear-gradient(135deg, #0065a9, #007acc); box-shadow: 0 4px 24px rgba(0,101,169,0.32); }
     .tool-card.github { background: linear-gradient(135deg, #c73d0e, var(--orange)); box-shadow: 0 4px 24px rgba(245,80,28,0.32); }
     .tool-card.vercel { background: linear-gradient(135deg, #c4358a, var(--pink)); box-shadow: 0 4px 24px rgba(242,91,182,0.32); }
+    .tool-card.supabase { background: linear-gradient(135deg, #1a6b3e, #3ECF8E); box-shadow: 0 4px 24px rgba(62,207,142,0.32); }
+    .tool-grid .tool-wide { grid-column: 1 / -1; }
     .tool-emoji { font-size: 2rem; display: block; margin-bottom: 0.8rem; }
     .tool-card h3 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.2rem; }
     .tool-tagline { font-size: 0.78rem; opacity: 0.7; font-style: italic; margin-bottom: 0.8rem; }
@@ -663,7 +665,7 @@
       <span class="hero-tag">✨ Zero coding experience needed</span>
       <h1>Vibe Coding<br>for <span class="accent">Beginners</span></h1>
       <p class="sub">Build real websites and apps by describing what you want in plain English. No programming background required.</p>
-      <p class="tools-line">Using Claude Code &nbsp;•&nbsp; VS Code &nbsp;•&nbsp; GitHub &nbsp;•&nbsp; Vercel</p>
+      <p class="tools-line">Using Claude Code &nbsp;•&nbsp; VS Code &nbsp;•&nbsp; GitHub &nbsp;•&nbsp; Vercel &nbsp;•&nbsp; Supabase</p>
       <a href="#steps" class="hero-cta">Start Building &rarr;</a>
     </div>
     <div class="hero-image">
@@ -703,8 +705,8 @@
 <!-- TOOLKIT -->
 <div class="section-wrap fade-in">
   <div class="section-label">Your toolkit</div>
-  <div class="section-title">Four tools, one smooth pipeline</div>
-  <p class="section-sub">These four free tools work together to take your idea from a blank screen to a real, live website.</p>
+  <div class="section-title">The tools you need</div>
+  <p class="section-sub">These free tools work together to take your idea from a blank screen to a real, live website. Add Supabase when your project needs to store data.</p>
   <div class="tool-grid">
     <div class="tool-card claude">
       <span class="tool-emoji">🤖</span>
@@ -741,6 +743,15 @@
       <div class="think-label">Think of it as</div>
       <div class="think-text">The 'publish' button for the entire internet</div>
       <a href="https://vercel.com" target="_blank" rel="noopener" class="tool-link">Sign up free &rarr;</a>
+    </div>
+    <div class="tool-card supabase tool-wide">
+      <span class="tool-emoji">🗄️</span>
+      <h3>Supabase</h3>
+      <div class="tool-tagline">Your database</div>
+      <div class="tool-desc">A free, open-source backend that gives your app a real database, user authentication, and file storage — all without writing server code. Perfect when your project needs to save and retrieve data.</div>
+      <div class="think-label">Think of it as</div>
+      <div class="think-text">A spreadsheet in the cloud that your app can read and write to</div>
+      <a href="https://supabase.com" target="_blank" rel="noopener" class="tool-link">Get it free &rarr;</a>
     </div>
   </div>
 </div>
@@ -841,6 +852,11 @@
         <td><a href="https://vercel.com" class="ref-link" target="_blank" rel="noopener">vercel.com</a></td>
         <td>Publish your site live on the internet</td>
       </tr>
+      <tr>
+        <td><strong>🗄️ Supabase</strong></td>
+        <td><a href="https://supabase.com" class="ref-link" target="_blank" rel="noopener">supabase.com</a></td>
+        <td>Database & backend — store and retrieve data from your app</td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -908,7 +924,19 @@ const STEPS = [
     callout: { type:'green', icon:'✅', title:'Remember', body:'Be specific, but don\'t worry about technical terms. Claude understands plain English — no jargon needed. Claude will ask clarifying questions, write the code, and create files right in your project folder.' },
   },
   {
-    num: 5, emoji: '👀', title: 'Preview Your Work',
+    num: 5, emoji: '🗄️', title: 'Connect to Supabase',
+    intro: 'Supabase gives your app a real database and backend — so you can store user data, form submissions, lists, and more. You don\'t need to know SQL; just describe what you want to store and Claude handles the rest.',
+    tasks: [
+      { id:'s_supa', html:'Sign up for free at <a href="https://supabase.com" target="_blank" rel="noopener" style="color:var(--teal-dark);font-weight:600;">supabase.com</a> — use your GitHub account for the easiest signup' },
+      { id:'s_supb', html:'Click <strong>New project</strong>, give it a name, and wait about a minute for it to spin up' },
+      { id:'s_supc', html:'In your project dashboard, go to <strong>Project Settings → API</strong> and copy your <strong>Project URL</strong> and <strong>anon/public key</strong>' },
+      { id:'s_supd', html:'In Claude Code, say: <em>"Connect my app to Supabase. My project URL is [X] and my anon key is [Y]"</em> — Claude installs the SDK and wires everything up' },
+      { id:'s_supe', html:'Ask Claude to set up your data: <em>"Create a table to store [your data] and update the app to save and load from it"</em>' },
+    ],
+    callout: { type:'yellow', icon:'🔐', title:'Keep your keys private', body:'Never paste your Supabase URL or anon key directly into your code files or a public GitHub repo. Ask Claude Code: "How do I store my Supabase credentials safely?" and it will set up a secure .env file.' },
+  },
+  {
+    num: 6, emoji: '👀', title: 'Preview Your Work',
     intro: 'As Claude builds your project, you\'ll want to see how it actually looks in a browser. Here\'s how to get a live preview:',
     tasks: [
       { id:'s5a', html:'In the Claude Code chat, ask: <strong>"How do I preview this in my browser?"</strong>' },
@@ -919,7 +947,7 @@ const STEPS = [
     callout: { type:'yellow', icon:'💬', title:'Stay in the chat as you review', body:'"The header is too big" — "Move the button to the center" — "Make the background a soft gray." Claude updates the code immediately as you describe what you see.' },
   },
   {
-    num: 6, emoji: '🐙', title: 'Save to GitHub',
+    num: 7, emoji: '🐙', title: 'Save to GitHub',
     intro: 'Time to back up your project on GitHub. VS Code has GitHub built right in — no terminal, no command line, no stress.',
     tasks: [
       { id:'s6a', html:'Click the <strong>Source Control icon</strong> in the VS Code left sidebar (looks like a branching tree with two forks)' },
@@ -933,7 +961,7 @@ const STEPS = [
     callout: { type:'pink', icon:'💾', title:'New vocab: commit & push', body:'<strong>Commit</strong>: Saving a named snapshot of your changes (like a video game save point). <strong>Push</strong>: Sending that snapshot up to GitHub so it\'s backed up online. Or just tell Claude Code: "Commit and push my changes" and it handles everything.' },
   },
   {
-    num: 7, emoji: '🚀', title: 'Go Live with Vercel',
+    num: 8, emoji: '🚀', title: 'Go Live with Vercel',
     intro: 'This is the step where your site gets a real URL and goes live on the internet. Takes about 60 seconds.',
     tasks: [
       { id:'s7a', html:'Go to <a href="https://vercel.com" target="_blank" rel="noopener" style="color:var(--teal-dark);font-weight:600;">vercel.com</a> and log in with your GitHub account' },
